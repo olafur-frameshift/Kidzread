@@ -1,0 +1,60 @@
+name: kidsread
+description: A native Android app for children aged 5–7 learning to read from scratch.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Text-to-speech for letters and words
+  flutter_tts: ^4.0.0
+
+  # Background music and audio clips
+  just_audio: ^0.9.0
+
+  # Progress persistence (MVP)
+  shared_preferences: ^2.3.0
+
+  # Optional: richer local storage if needed
+  hive: ^2.0.0
+  hive_flutter: ^1.0.0
+
+  # Navigation
+  go_router: ^13.0.0
+
+  # State management
+  provider: ^6.0.0
+
+  # Celebration / confetti animations
+  lottie: ^3.0.0
+
+  # General UI animations
+  flutter_animate: ^4.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/audio/letters/
+    - assets/audio/words/
+    - assets/audio/encouragement/
+    - assets/audio/sfx/
+    - assets/audio/music/
+    - assets/images/words/
+    - assets/fonts/
+
+  fonts:
+    - family: Fredoka
+      fonts:
+        - asset: assets/fonts/Fredoka-Regular.ttf
+        - asset: assets/fonts/Fredoka-Bold.ttf
+          weight: 700
