@@ -1,0 +1,151 @@
+KIDSREAD — TODO
+================
+Last updated: 2026-04-03
+Phase 1 scaffold is complete and pushed.
+
+
+TO GET THE APP RUNNING (one-time setup)
+----------------------------------------
+[ ] Install Flutter SDK on your machine
+      https://docs.flutter.dev/get-started/install/windows/mobile
+
+[ ] Install Android Studio (includes emulator + SDK + adb)
+      https://developer.android.com/studio
+
+[ ] Clone the repo
+      git clone <repo-url>
+      cd Kidzread
+      git checkout claude/kidsread-project-setup-65fsA
+
+[ ] Generate the Android project shell (one-time, creates android/ folder)
+      flutter create . --project-name kidsread --org com.kidsread
+
+[ ] Install Dart dependencies
+      flutter pub get
+
+[ ] Add fonts to assets/fonts/
+      Download Fredoka from https://fonts.google.com/specimen/Fredoka
+      Place Fredoka-Regular.ttf and Fredoka-Bold.ttf in assets/fonts/
+
+[ ] Run on emulator or phone
+      flutter run
+
+
+ASSETS NEEDED
+--------------
+[ ] Word images (~30 PNGs, one per CVC word)
+      Source: https://openmoji.org or https://twemoji.twitter.github.io
+      Size: 256×256px PNG
+      Naming: exact word match — cat.png, dog.png, sun.png, etc.
+      Destination: assets/images/words/
+      Full list in docs/content-wordlist.md
+
+[ ] Module + game icon images (9 PNGs)
+      assets/images/icons/module_letters.png
+      assets/images/icons/module_matching.png
+      assets/images/icons/module_phonics.png
+      assets/images/icons/module_spelling.png
+      assets/images/icons/module_word_picture.png
+      assets/images/icons/game_bubble_pop.png
+      assets/images/icons/game_letter_sort.png
+      assets/images/icons/game_word_builder.png
+      assets/images/icons/game_picture_hunt.png
+
+[ ] Default avatar image
+      assets/images/avatars/default.png
+
+[ ] Encouragement audio clips (optional — TTS works without them)
+      Full script in docs/audio-script.md
+      Destination: assets/audio/encouragement/
+      Format: MP3, 44.1kHz mono, normalised to -3dBFS
+
+[ ] UI sound effects (optional — stubbed for now)
+      tap.mp3, correct.mp3, wrong.mp3, level_complete.mp3, unlock.mp3
+      Destination: assets/audio/sfx/
+      Source: freesound.org or zapsplat.com (commercial licence)
+
+[ ] Background music (optional — stubbed for now)
+      background.mp3 — soft looping instrumental, child-friendly
+      Destination: assets/audio/music/
+
+
+PHASE 2 — AUDIO & IMAGE WIRING
+--------------------------------
+[ ] Wire just_audio into TtsAudioService.playSfx() for SFX clips
+[ ] Wire just_audio into TtsAudioService.playBackgroundMusic()
+[ ] Replace Icon(Icons.image_rounded) placeholders with real Image.asset()
+      in: spelling_module_screen.dart, word_picture_module_screen.dart,
+          word_builder_screen.dart, picture_hunt_screen.dart
+[ ] Replace Icon(Icons.image_rounded) in LetterCard example-word display
+[ ] Test TTS speech rate on a real child (may need tuning)
+
+
+PHASE 3 — POLISH
+-----------------
+[ ] Add onboarding screen for first-time launch (name entry, avatar pick)
+[ ] Add confetti/Lottie animation to LevelCompleteOverlay
+[ ] Add confetti/Lottie animation to module-complete celebration
+[ ] Add game-unlock animation sequence (fanfare → game card flies in)
+[ ] Tune wiggle animation on wrong-answer LetterCard
+[ ] Add tap SFX to all BigButton presses
+[ ] Add drag-start / drop SFX to all Draggable widgets
+[ ] Review colour contrast ratios (WCAG AA minimum)
+[ ] Add semantic labels to all icon-only interactive elements
+
+
+PHASE 4 — MULTI-PROFILE
+-------------------------
+[ ] Add profile selection screen (data model already list-ready)
+[ ] Add "Add child" flow (name + avatar)
+[ ] Switch ProgressService to load/save List<UserProfile>
+[ ] Show per-profile progress on home screen
+
+
+PHASE 5 — STORE PREP
+---------------------
+[ ] Finalise app name (KidsRead is a working title)
+[ ] Design app icon (512×512px)
+[ ] Write Play Store listing copy
+[ ] Accessibility audit (TalkBack, font scaling, touch target review)
+[ ] Verify fully offline — no network calls at runtime
+[ ] Set minSdkVersion = 21 in android/app/build.gradle
+[ ] Generate signed release APK / AAB
+[ ] Set up Play Store developer account
+
+
+KNOWN GAPS / DECISIONS PENDING
+--------------------------------
+[ ] Image art style: OpenMoji (emoji-style, free) vs. custom illustration?
+[ ] Encouragement voice: keep TTS or record a human voice actor?
+[ ] Confirm minimum Android version (API 21 recommended)
+[ ] App name / branding sign-off before any store submission
+[ ] Decide: keep Fredoka font or switch to Nunito?
+
+
+DONE
+-----
+[x] Project planning document (PLANNING.md)
+[x] Flutter project scaffold (pubspec.yaml, analysis_options.yaml)
+[x] App theme — KidsReadTheme (colours, typography, spacing, touch targets)
+[x] go_router navigation with all 9 named routes
+[x] Data models: AppProgress, UserProfile, ModuleCatalogue, GameCatalogue
+[x] AudioService interface + TtsAudioService (flutter_tts, slow speech rate)
+[x] ProgressService (stars, unlocks, SharedPreferences persistence)
+[x] Home screen — winding module path + games grid
+[x] Module 1: Letter Recognition (4-choice quiz, audio prompt)
+[x] Module 2: Uppercase/Lowercase Matching (drag-and-drop)
+[x] Module 3: Letter Sounds & Phonics (audio → 3-choice)
+[x] Module 4: Short Word Spelling (letter drag into slots)
+[x] Module 5: Word–Picture Matching (audio/text → 4-picture grid)
+[x] LevelCompleteOverlay with animated StarBurst
+[x] Mini-game: Bubble Pop
+[x] Mini-game: Letter Sort
+[x] Mini-game: Word Builder
+[x] Mini-game: Picture Hunt
+[x] Profile screen (single profile, lock/unlock status)
+[x] Shared widgets: BigButton, LetterCard, StarBurst, AudioPromptButton
+[x] Shared data: full A–Z alphabet, 28 CVC words, 25 Dolch sight words
+[x] Assets directory structure with sourcing READMEs
+[x] Unit tests: progress model, lesson catalogue, word data, letter data
+[x] docs/content-wordlist.md and docs/audio-script.md
+[x] MANIFESTO.txt, OVERVIEW.txt, TODO.txt

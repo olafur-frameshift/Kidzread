@@ -1,0 +1,131 @@
+KIDSREAD — PROJECT OVERVIEW
+============================
+
+What It Is
+----------
+KidsRead is a native Android app for children aged 5–7 (Kindergarten to
+Grade 1) who are learning to read from scratch. Children progress through
+five structured learning modules, unlocking mini-games as rewards. Every
+interaction is accompanied by audio — no reading required to navigate.
+
+Platform:   Android (Flutter/Dart) — iOS-ready when needed
+Status:     Phase 1 scaffold complete, not yet built/deployed
+
+
+The Learning Path
+-----------------
+Modules unlock in sequence. Each has 5 levels; completing a module awards
+stars and unlocks a mini-game.
+
+  MODULE 1 — Letter Recognition
+    Learn A–Z by name. Tap a letter to hear it. Answer 4-choice quizzes.
+    UNLOCKS: Bubble Pop game
+
+  MODULE 2 — Uppercase / Lowercase Matching
+    Drag each big letter to its small twin. Card-matching style.
+    UNLOCKS: Letter Sort game
+
+  MODULE 3 — Letter Sounds & Phonics
+    Hear a phoneme, pick the right letter. Short vowels get extra focus.
+    (No new game unlock — bridges to word work)
+
+  MODULE 4 — Short Word Spelling (CVC Words)
+    See a picture, drag letters into slots to spell the word.
+    Word bank: cat, dog, sun, hat, pig, cup, hen, bed, fox, jug, ...
+    UNLOCKS: Word Builder game
+
+  MODULE 5 — Word–Picture Matching
+    Hear a word, tap the matching picture. Then read a word, find the picture.
+    Dolch sight words + CVC words.
+    UNLOCKS: Picture Hunt game
+
+
+Mini-Games (unlockable, no fail state)
+---------------------------------------
+  Bubble Pop    — Tap the rising bubble that matches the spoken letter
+  Letter Sort   — Drag falling letters into uppercase / lowercase bins
+  Word Builder  — Tap scrambled letters in order to spell the picture word
+  Picture Hunt  — Find the named object in a grid of illustrated word cards
+
+
+Tech Stack
+----------
+  Framework:    Flutter 3.41+ / Dart 3.11+
+  Navigation:   go_router
+  State:        provider + ChangeNotifier
+  Audio:        flutter_tts (MVP) → just_audio (recorded clips later)
+  Persistence:  shared_preferences (MVP) → hive if complexity grows
+  Animations:   flutter_animate + lottie
+  Min Android:  API 21 (Android 5.0)
+
+
+Repository Structure (key paths)
+---------------------------------
+  lib/
+    main.dart                     App entry point, provider setup
+    app/router.dart               All named routes
+    app/theme.dart                KidsReadTheme — colours, fonts, spacing
+    models/                       progress.dart, lesson.dart, game.dart
+    shared/audio/                 AudioService (TTS + SFX interface)
+    shared/progress/              ProgressService (stars, unlocks, persistence)
+    shared/widgets/               BigButton, LetterCard, StarBurst, etc.
+    shared/data/                  word_data.dart, letter_data.dart
+    features/home/                Home screen + module path + games grid
+    features/modules/             One folder per module (5 total)
+    features/games/               One folder per mini-game (4 total)
+    features/profile/             Profile screen (single profile, MVP)
+  assets/
+    audio/                        Placeholder dirs for clips + music
+    images/words/                 One PNG per CVC word (to be sourced)
+    fonts/                        Fredoka-Regular.ttf + Fredoka-Bold.ttf
+  docs/
+    content-wordlist.md           Full word/image asset checklist
+    audio-script.md               Recording script for encouragement clips
+  test/
+    models/                       Unit tests for progress + lesson models
+    shared/data/                  Unit tests for word and letter data
+
+
+Content
+-------
+  CVC Words (28):  cat dog sun hat pig cup hen bed fox jug map net pin
+                   rod tub van web yak zip bus cot fig hop jet kit log mud nap
+  Sight Words (25): the and is in it of to a I you he she we go do
+                    on up at no so me my by be as
+
+
+What Is Missing Before First Build
+------------------------------------
+  1. Android project shell
+       Run: flutter create . --project-name kidsread --org com.kidsread
+       This generates the android/ directory Flutter needs to compile.
+
+  2. Fonts
+       Download Fredoka from fonts.google.com/specimen/Fredoka
+       Place Fredoka-Regular.ttf and Fredoka-Bold.ttf in assets/fonts/
+
+  3. Word images
+       Source ~30 PNGs from openmoji.org or twemoji (CC BY-SA 4.0)
+       Filename must match the word exactly: cat.png, dog.png, etc.
+       Place in assets/images/words/
+
+  4. Module + game icon images
+       assets/images/icons/module_letters.png  (and matching_, phonics_,
+       spelling_, word_picture_, game_bubble_pop_, game_letter_sort_,
+       game_word_builder_, game_picture_hunt_)
+
+
+Development Phases
+------------------
+  Phase 1 (DONE)  — Scaffold: routing, theme, models, services, all screens
+  Phase 2         — Connect real audio clips; replace placeholder images
+  Phase 3         — Polish animations, celebrate flows, onboarding screen
+  Phase 4         — Multi-profile UI (data model already list-ready)
+  Phase 5         — Accessibility audit, offline verification, store prep
+
+
+Contact / Ownership
+-------------------
+  Project:  KidsRead (working title)
+  Repo:     olafur-frameshift/Kidzread
+  Branch:   claude/kidsread-project-setup-65fsA

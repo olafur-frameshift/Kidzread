@@ -1,0 +1,64 @@
+KIDSREAD — MANIFESTO
+====================
+
+We are building something that matters.
+
+Every child deserves to learn to read. Not as a chore, not under pressure,
+not in fear of getting it wrong — but with joy, with wonder, and at their
+own pace. KidsRead exists to make that first step into literacy feel like
+play.
+
+WHY THIS EXISTS
+---------------
+The gap between children who arrive at school as confident readers and those
+who don't is one of the most consequential divides in a child's life. It
+shapes everything that follows. Most reading apps treat this as a content
+problem — more words, more levels, more gamification. We believe it is a
+confidence problem. A child who is afraid to be wrong stops trying. A child
+who is having fun keeps going.
+
+WHAT WE STAND FOR
+-----------------
+No wrong answers, only next tries.
+  Every mistake is met with encouragement, never shame. The app wiggles,
+  smiles, and says "try again!" — not a buzzer, not a red X.
+
+Audio first, reading second.
+  A child learning to read cannot read instructions. Every prompt is spoken
+  aloud. Navigation is driven by icons and sound. The app works for a child
+  who cannot yet read a single word.
+
+Small hands, big targets.
+  Every touchable element is at least 60×60dp. No fiddly taps, no accidental
+  back buttons. The interface is built for hands that are still learning motor
+  control.
+
+Short sessions, deep learning.
+  Each level takes 2–3 minutes. A child's attention is precious. We respect
+  it by packing maximum learning into minimum time, then letting them go play.
+
+Rewards that mean something.
+  Stars and unlockable games aren't hollow. They represent real progress —
+  letters mastered, words recognised, sounds decoded. The child earns them;
+  the child owns them.
+
+Progress is personal.
+  No leaderboards. No comparisons. No "you're behind." Just one child's
+  journey, measured only against their own yesterday.
+
+THE PROMISE
+-----------
+When a child finishes KidsRead, they can:
+  - Name and recognise every letter of the alphabet
+  - Match uppercase and lowercase pairs
+  - Decode the sounds letters make
+  - Spell simple three-letter words
+  - Match spoken and written words to pictures
+
+That is a foundation. Everything else — stories, books, a lifetime of
+reading — is built on it.
+
+We are not building an app. We are building the first step.
+
+Build it with care. Build it with joy. Build it like a child is watching —
+because one is.
