@@ -46,7 +46,7 @@ class _MatchingModuleScreenState extends State<MatchingModuleScreen> {
   void _loadLevel() {
     _levelLetters = letterGroups[_levelIndex];
     _upperCards = List<String>.from(_levelLetters);
-    _lowerCards = List<String>.from(_levelLetters)..shuffle(Random());
+    _lowerCards = _levelLetters.map((l) => l.toLowerCase()).toList()..shuffle(Random());
     _matches.clear();
     _matchedCount = 0;
     _correctCount = 0;
@@ -84,7 +84,7 @@ class _MatchingModuleScreenState extends State<MatchingModuleScreen> {
         .id;
     final isLast = _levelIndex == letterGroups.length - 1;
 
-    final stars = await context.read<ProgressService>().recordLevelComplete(
+    final result = await context.read<ProgressService>().recordLevelComplete(
           levelId: levelId,
           moduleId: _moduleId,
           accuracyPercent: accuracy,
@@ -96,7 +96,8 @@ class _MatchingModuleScreenState extends State<MatchingModuleScreen> {
       context: context,
       barrierDismissible: false,
       builder: (_) => LevelCompleteOverlay(
-        stars: stars,
+        stars: result.stars,
+        unlockedGameId: result.unlockedGameId,
         isLastLevel: isLast,
         onNext: isLast
             ? () {

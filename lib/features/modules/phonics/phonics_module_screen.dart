@@ -109,7 +109,7 @@ class _PhonicsModuleScreenState extends State<PhonicsModuleScreen> {
         .id;
     final isLast = _levelIndex == _phonicsGroups.length - 1;
 
-    final stars = await context.read<ProgressService>().recordLevelComplete(
+    final result = await context.read<ProgressService>().recordLevelComplete(
           levelId: levelId,
           moduleId: _moduleId,
           accuracyPercent: accuracy,
@@ -121,7 +121,8 @@ class _PhonicsModuleScreenState extends State<PhonicsModuleScreen> {
       context: context,
       barrierDismissible: false,
       builder: (_) => LevelCompleteOverlay(
-        stars: stars,
+        stars: result.stars,
+        unlockedGameId: result.unlockedGameId,
         isLastLevel: isLast,
         onNext: isLast
             ? () {

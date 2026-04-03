@@ -30,7 +30,7 @@ const List<LetterData> alphabet = [
   LetterData(letter: 'D', phoneme: 'duh', exampleWord: 'dog', exampleImageAsset: 'assets/images/words/dog.png'),
   LetterData(letter: 'E', phoneme: 'eh', exampleWord: 'egg', exampleImageAsset: 'assets/images/words/egg.png'),
   LetterData(letter: 'F', phoneme: 'fuh', exampleWord: 'fox', exampleImageAsset: 'assets/images/words/fox.png'),
-  LetterData(letter: 'G', phoneme: 'guh', exampleWord: 'jug', exampleImageAsset: 'assets/images/words/jug.png'),
+  LetterData(letter: 'G', phoneme: 'guh', exampleWord: 'gum', exampleImageAsset: 'assets/images/words/gum.png'),
   LetterData(letter: 'H', phoneme: 'huh', exampleWord: 'hat', exampleImageAsset: 'assets/images/words/hat.png'),
   LetterData(letter: 'I', phoneme: 'ih', exampleWord: 'inn', exampleImageAsset: 'assets/images/words/inn.png'),
   LetterData(letter: 'J', phoneme: 'juh', exampleWord: 'jet', exampleImageAsset: 'assets/images/words/jet.png'),

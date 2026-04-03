@@ -9,6 +9,17 @@ import '../../models/game.dart';
 
 const String _kProfileKey = 'kidsread_profile';
 
+/// Result returned from [ProgressService.recordLevelComplete].
+class LevelResult {
+  const LevelResult({required this.stars, this.unlockedGameId});
+
+  /// Stars earned (1–3).
+  final int stars;
+
+  /// Non-null if a mini-game was just unlocked by completing the module.
+  final String? unlockedGameId;
+}
+
 /// Manages loading, updating, and persisting the single active [UserProfile].
 ///
 /// Exposes [ChangeNotifier] so widgets can rebuild on progress changes.
@@ -51,8 +62,9 @@ class ProgressService extends ChangeNotifier {
 
   /// Record the result of completing a level.
   ///
-  /// [accuracyPercent] is 0–100. Returns the stars awarded.
-  Future<int> recordLevelComplete({
+  /// [accuracyPercent] is 0–100. Returns a [LevelResult] with stars awarded
+  /// and any newly unlocked game.
+  Future<LevelResult> recordLevelComplete({
     required String levelId,
     required String moduleId,
     required int accuracyPercent,
@@ -96,7 +108,7 @@ class ProgressService extends ChangeNotifier {
     await _persist();
     notifyListeners();
 
-    return stars;
+    return LevelResult(stars: stars, unlockedGameId: newlyUnlockedGame);
   }
 
   Future<void> updateProfileName(String name) async {

@@ -100,12 +100,10 @@ class _LettersModuleScreenState extends State<LettersModuleScreen> {
       audio.playEncouragement(EncouragementType.tryAgain);
     }
 
+    // Always advance so children are never stuck.
     Future.delayed(const Duration(milliseconds: 1200), () {
       if (!mounted) return;
-      if (isCorrect || true) {
-        // Always advance so children are never stuck.
-        _advance();
-      }
+      _advance();
     });
   }
 
@@ -129,7 +127,7 @@ class _LettersModuleScreenState extends State<LettersModuleScreen> {
     final isLast = _levelIndex == letterGroups.length - 1;
 
     final progressService = context.read<ProgressService>();
-    final stars = await progressService.recordLevelComplete(
+    final result = await progressService.recordLevelComplete(
       levelId: levelId,
       moduleId: _moduleId,
       accuracyPercent: accuracy,
@@ -141,7 +139,8 @@ class _LettersModuleScreenState extends State<LettersModuleScreen> {
       context: context,
       barrierDismissible: false,
       builder: (_) => LevelCompleteOverlay(
-        stars: stars,
+        stars: result.stars,
+        unlockedGameId: result.unlockedGameId,
         onNext: isLast
             ? () {
                 Navigator.of(context).pop();
@@ -242,6 +241,7 @@ class _LettersModuleScreenState extends State<LettersModuleScreen> {
                   final isSelected = letter == _selectedLetter;
                   final isCorrect = isSelected ? _lastAnswerCorrect : null;
                   return LetterCard(
+                    key: ValueKey('$_levelIndex-$_questionIndex-$letter'),
                     letter: letter,
                     onTap: () => _onLetterTap(letter),
                     isSelected: isSelected,

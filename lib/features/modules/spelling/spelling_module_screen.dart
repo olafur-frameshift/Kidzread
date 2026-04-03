@@ -134,7 +134,7 @@ class _SpellingModuleScreenState extends State<SpellingModuleScreen> {
         .id;
     final isLast = _levelIndex == _spellingLevelIndices.length - 1;
 
-    final stars = await context.read<ProgressService>().recordLevelComplete(
+    final result = await context.read<ProgressService>().recordLevelComplete(
           levelId: levelId,
           moduleId: _moduleId,
           accuracyPercent: accuracy,
@@ -146,7 +146,8 @@ class _SpellingModuleScreenState extends State<SpellingModuleScreen> {
       context: context,
       barrierDismissible: false,
       builder: (_) => LevelCompleteOverlay(
-        stars: stars,
+        stars: result.stars,
+        unlockedGameId: result.unlockedGameId,
         isLastLevel: isLast,
         onNext: isLast
             ? () {

@@ -114,8 +114,8 @@ class KidsReadTheme {
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
         seedColor: primaryBlue,
-        background: backgroundLight,
         surface: surfaceWhite,
+        surfaceContainerLowest: backgroundLight,
         primary: primaryBlue,
         secondary: primaryYellow,
         tertiary: primaryGreen,

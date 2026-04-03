@@ -47,9 +47,16 @@ class _WordPictureModuleScreenState extends State<WordPictureModuleScreen> {
     _loadQuestion();
   }
 
+  Word? _previousTarget;
+
   void _loadQuestion() {
     final pool = List<Word>.from(cvcWords)..shuffle(Random());
+    // Avoid repeating the same target word consecutively.
+    if (_previousTarget != null && pool.first.text == _previousTarget!.text && pool.length > 1) {
+      pool.add(pool.removeAt(0));
+    }
     _targetWord = pool.first;
+    _previousTarget = _targetWord;
     final distractors = pool.skip(1).take(3).toList();
     _choices = [_targetWord, ...distractors]..shuffle(Random());
     _selectedIndex = null;
@@ -100,7 +107,7 @@ class _WordPictureModuleScreenState extends State<WordPictureModuleScreen> {
         .id;
     final isLast = _levelIndex == _totalLevels - 1;
 
-    final stars = await context.read<ProgressService>().recordLevelComplete(
+    final result = await context.read<ProgressService>().recordLevelComplete(
           levelId: levelId,
           moduleId: _moduleId,
           accuracyPercent: accuracy,
@@ -112,7 +119,8 @@ class _WordPictureModuleScreenState extends State<WordPictureModuleScreen> {
       context: context,
       barrierDismissible: false,
       builder: (_) => LevelCompleteOverlay(
-        stars: stars,
+        stars: result.stars,
+        unlockedGameId: result.unlockedGameId,
         isLastLevel: isLast,
         onNext: isLast
             ? () {
